@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trisaro Studio | Invitaciones Cinematográficas</title>
+    
+    <link rel="icon" type="image/png" href="./logo_trisaro.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0F0F0F; color: #F8F5F0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        h1, h2 { font-family: 'Playfair Display', serif; }
+        .gold-text { color: #C6A75E; }
+        .btn-trisaro { border: 1px solid #C6A75E; transition: all 0.5s ease; letter-spacing: 3px; }
+        .btn-trisaro:hover { background-color: #C6A75E; color: #0F0F0F; }
+    </style>
+</head>
+<body>
+
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-lg mx-auto">
+            <img src="./logo_trisaro.png" alt="Trisaro Studio" class="mx-auto w-full max-w-[300px] h-auto mb-10 drop-shadow-2xl">
+            
+            <h1 class="text-4xl md:text-5xl mb-6 italic">El arte de invitar, redefinido.</h1>
+            <p class="text-gray-400 tracking-[0.4em] uppercase text-[10px] mb-12">San Luis Potosí • México</p>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="#proyectos" class="btn-trisaro px-10 py-4 text-[10px] font-bold">VER CATÁLOGO</a>
+                <a href="https://wa.me/527204519733" class="bg-white text-black px-10 py-4 text-[10px] font-bold tracking-widest hover:bg-gray-200 transition">CONTACTO DIRECTO</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
