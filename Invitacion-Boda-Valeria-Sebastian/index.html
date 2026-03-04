@@ -30,6 +30,18 @@
     </script>
 
     <style>
+        /* Bloquea que el usuario pueda sombrear o copiar texto */
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Hace que las imágenes no respondan al clic largo en celulares */
+img {
+    -webkit-touch-callout: none;
+    pointer-events: none;
+}
         body { background-color: #F8F5F0; overflow-x: hidden; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
@@ -339,6 +351,23 @@
             correctLevel : QRCode.CorrectLevel.H
         });
     </script>
+    <script>
+    // Desactiva el menú del clic derecho para evitar "Guardar imagen como"
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Bloquea el arrastre de imágenes al escritorio
+    document.addEventListener('dragstart', event => event.preventDefault());
+</script>
+    <script>
+        // Aquí es donde pegas el código de bloqueo
+        document.onkeydown = function(e) {
+            // Bloquea F12, Ctrl+Shift+I (Inspeccionar) y Ctrl+U (Ver código fuente)
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        };
+    </script>
 </body>
 
 </html>
+
