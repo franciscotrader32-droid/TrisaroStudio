@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trisaro Studio | Invitaciones Cinematográficas</title>
+    
+    <link rel="icon" type="image/x-icon" href="./favicon.ico?v=2">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dorado: #C6A75E;
+            --oscuro: #0F0F0F;
+            --marfil: #F8F5F0;
+        }
+
+        body { 
+            background-color: var(--oscuro); 
+            color: var(--marfil); 
+            font-family: 'Montserrat', sans-serif; 
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+
+        /* Botón Estilo Trisaro Studio */
+        .btn-trisaro {
+            border: 1px solid var(--dorado);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .btn-trisaro:hover {
+            background-color: var(--dorado);
+            color: var(--oscuro);
+            transform: translateY(-2px);
+        }
+
+        /* Animaciones de entrada (Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ajuste de brillo para el logo sobre fondo oscuro */
+        .logo-shadow {
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+        }
+    </style>
+</head>
+<body>
+
+    <section class="relative h-screen flex items-center justify-center">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80" 
+                 class="w-full h-full object-cover" alt="Ambiente Boda">
+        </div>
+
+        <div class="relative z-10 text-center px-6 w-full max-w-4xl mx-auto">
+            <div class="reveal mb-10">
+                <img src="./logo_trisaro.png" 
+                     alt="Trisaro Studio Logo" 
+                     class="mx-auto w-80 md:w-[500px] h-auto logo-shadow transition-all duration-700">
+            </div>
+
+            <div class="reveal">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl mb-4 italic leading-tight">El arte de invitar, redefinido.</h1>
+                <p class="text-gray-500 tracking-[0.5em] uppercase text-[9px] md:text-xs mb-12">San Luis Potosí • México</p>
+                
+                <div class="flex flex-col sm:flex-row gap-5 justify-center mt-16">
+                    <a href="#experiencia" class="btn-trisaro px-12 py-4">Ver Catálogo</a>
+                    <a href="https://wa.me/527204519733?text=Hola%20Trisaro%20Studio,%20quiero%20información%20sobre%20sus%20invitaciones." 
+                       class="bg-white text-black px-12 py-4 text-[10px] font-bold tracking-widest uppercase hover:bg-[#C6A75E] hover:text-white transition-all duration-500">
+                       Contacto Directo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" class="py-32 px-6 bg-[#080808]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-24 reveal">
+                <h2 class="text-4xl md:text-5xl italic mb-4">Nuestra Colección</h2>
+                <div class="w-20 h-px bg-[#C6A75E] mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <span class="text-[#C6A75E] text-[10px] uppercase tracking-widest font-bold">Insignia 2026</span>
+                    <h3 class="text-4xl my-6 italic">The Valery Canvas</h3>
+                    <p class="text-gray-400 leading-relaxed mb-10 text-lg font-light">
+                        Una experiencia inmersiva que transforma su historia en una narrativa cinematográfica. Incluye audio personalizado, confirmación RSVP digital y diseño optimizado para dispositivos móviles.
+                    </p>
+                    <a href="./valeria-y-sebastian/" target="_blank" class="btn-trisaro px-10 py-4 inline-block">Vivir la experiencia</a>
+                </div>
+                <div class="relative reveal order-first md:order-last">
+                    <div class="absolute -inset-4 border border-[#C6A75E]/20 rounded-lg"></div>
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80" 
+                         class="rounded shadow-2xl relative z-10 w-full grayscale hover:grayscale-0 transition duration-700" 
+                         alt="Demo Invitación">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 text-center border-t border-white/5">
+        <p class="font-serif italic text-2xl text-[#C6A75E] mb-6">Trisaro Studio</p>
+        <p class="text-[10px] tracking-[0.5em] text-gray-600 uppercase">© 2026 Digital Luxury Experiences | San Luis Potosí</p>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
