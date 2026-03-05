@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trisaro Studio | Experiencia Editorial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root { --oro: #D4AF37; --salvia: #9CAF88; --negro: #0a0a0a; }
+        body { background-color: var(--negro); color: white; font-family: 'Montserrat', sans-serif; margin: 0; }
+        h1, h2 { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--oro); }
 
+        /* Estilo Editorial: Menos es Más */
+        .section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; border-bottom: 1px solid #1a1a1a; }
+        .numero { font-size: 1.2rem; color: var(--salvia); letter-spacing: 5px; margin-bottom: 20px; }
+        .titulo-capitulo { font-size: 2.5rem; margin: 0; line-height: 1.2; max-width: 600px; }
+        .frase { font-style: italic; color: #a0a0a0; margin-top: 20px; max-width: 400px; font-size: 1.1rem; }
+        
+        /* Escudo Anti-Copia Visual */
+        body { -webkit-user-select: none; user-select: none; }
+    </style>
+</head>
+<body>
+
+    <section class="section">
+        <div class="numero">CAPÍTULO I</div>
+        <h1 class="titulo-capitulo">VALERIA <br> & <br> SEBASTIÁN</h1>
+        <p class="frase">"Una historia que trasciende el tiempo."</p>
+    </section>
+
+    <section class="section">
+        <div class="numero">CAPÍTULO II</div>
+        <h2 class="titulo-capitulo">Donde todo <br> comenzó</h2>
+        <p class="frase">Un café en San Luis Potosí fue el inicio de nuestra mayor aventura.</p>
+    </section>
+
+    <section class="section">
+        <div id="qrcode"></div>
+        <p class="frase">Pase Digital Personalizado</p>
+        <a href="https://wa.me/527204519733" style="color: var(--oro); text-decoration: none; border: 1px solid var(--oro); padding: 15px 30px; margin-top: 30px;">CONFIRMAR ASISTENCIA</a>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Generación del QR
+        new QRCode(document.getElementById("qrcode"), {
+            text: "INVITADO: VIP | TRISARO STUDIO",
+            width: 150, height: 150,
+            colorDark : "#9CAF88", colorLight : "#ffffff"
+        });
+
+        // EL ESCUDO TRISARO STUDIO
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) return false;
+        };
+    </script>
+</body>
+</html>
