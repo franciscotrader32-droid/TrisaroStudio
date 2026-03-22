@@ -1,293 +1,823 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trisaro Studio | Una Historia de Amor Eterno</title>
+
+    <title>Valeria & Sebastián | Nuestra Historia Comienza</title>
+
+    <link rel="icon" type="image/x-icon" href="./favicon.ico?v=2">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&family=Great+Vibes&display=swap" rel="stylesheet">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+
+
     <script>
+
         tailwind.config = {
+
             theme: {
+
                 extend: {
+
                     colors: {
-                        marfil: '#FDFCFB',
+
+                        marfil: '#F8F5F0',
+
+                        salvia: '#9CAF88',
+
                         dorado: '#C6A75E',
-                        negroCine: '#0A0A0A',
+
                     },
+
                     fontFamily: {
-                        cormorant: ['Cormorant Garamond', 'serif'],
-                        cinzel: ['Cinzel', 'serif'],
+
+                        playfair: ['Playfair Display', 'serif'],
+
                         montserrat: ['Montserrat', 'sans-serif'],
-                        handwriting: ['Great Vibes', 'cursive'],
+
                     }
+
                 }
+
             }
+
         }
+
     </script>
+
+
 
     <style>
-        /* Bloqueos de seguridad Trisaro */
-        body { -webkit-user-select: none; user-select: none; background-color: #FDFCFB; overflow-x: hidden; }
-        img { -webkit-touch-callout: none; pointer-events: none; }
 
-        /* EFECTO HOLLYWOOD: Revelación Suave Cubic-Bezier */
-        .reveal { opacity: 0; transform: translateY(50px) scale(0.98); transition: all 1.8s cubic-bezier(0.19, 1, 0.22, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+        /* Bloquea que el usuario pueda sombrear o copiar texto */
 
-        /* Efecto de Zoom Lento (Ken Burns) para Header */
-        @keyframes kenburns {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
-        }
-        .hero-zoom { animation: kenburns 25s ease-out forwards; }
+body {
 
-        /* Intro Escenográfica de Polvo Dorado */
-        #hollywood-intro {
-            transition: opacity 2.5s ease, visibility 2.5s;
-            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-        }
+    -webkit-user-select: none;
 
-        /* Glassmorphism de Lujo (Tarjetas) */
-        .glass-premium {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(198, 167, 94, 0.15);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-        }
+    -moz-user-select: none;
 
-        /* Línea de Tiempo Cinematográfica */
-        .timeline-path {
-            position: absolute;
-            left: 50%;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, #C6A75E, transparent);
-            opacity: 0.3;
-        }
+    -ms-user-select: none;
 
-        /* Animación de entrada de luz dorada sutil */
-        .gold-light-entry {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(198, 167, 94, 0.08), transparent);
-            transform: translateX(-100%);
-            animation: lightSweep 5s infinite;
-        }
-        @keyframes lightSweep { 100% { transform: translateX(100%); } }
-    </style>
-</head>
-<body class="font-montserrat text-gray-900">
+    user-select: none;
 
-    <div id="hollywood-intro" class="fixed inset-0 z-[2000] flex items-center justify-center overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-60">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-glittering-gold-particles-in-the-air-41154-large.mp4" type="video/mp4">
-        </video>
+}
+
+/* Hace que las imágenes no respondan al clic largo en celulares */
+
+img {
+
+    -webkit-touch-callout: none;
+
+    pointer-events: none;
+
+}
+
+        body { background-color: #F8F5F0; overflow-x: hidden; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         
-        <div class="relative z-10 text-center px-8">
-            <p class="font-cinzel text-dorado tracking-[0.8em] text-[10px] mb-12 animate-pulse uppercase">TRISARO STUDIO PRESENTA</p>
-            <h1 class="font-cormorant text-white text-5xl md:text-8xl mb-20 italic tracking-tighter opacity-0" id="intro-title" style="transition: opacity 3.5s ease;">
-                Una Historia de Amor Eterno
-            </h1>
-            
-            <button onclick="launchMovie()" class="group relative px-20 py-6 overflow-hidden border border-dorado/30 text-dorado tracking-[0.5em] text-[11px] uppercase transition-all duration-1000">
-                <span class="relative z-10 group-hover:text-black">Comenzar Experiencia</span>
-                <div class="absolute inset-0 bg-dorado scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-1000"></div>
+
+        /* Custom Scrollbar */
+
+        ::-webkit-scrollbar { width: 5px; }
+
+        ::-webkit-scrollbar-track { background: #F8F5F0; }
+
+        ::-webkit-scrollbar-thumb { background: #C6A75E; }
+
+
+
+        .glass-card {
+
+            background: rgba(255, 255, 255, 0.8);
+
+            backdrop-filter: blur(10px);
+
+            border: 1px solid rgba(198, 167, 94, 0.2);
+
+        }
+
+
+
+        /* Music Button Animation */
+
+        @keyframes pulse-gold {
+
+            0% { box-shadow: 0 0 0 0 rgba(198, 167, 94, 0.4); }
+
+            70% { box-shadow: 0 0 0 10px rgba(198, 167, 94, 0); }
+
+            100% { box-shadow: 0 0 0 0 rgba(198, 167, 94, 0); }
+
+        }
+
+        .music-pulse { animation: pulse-gold 2s infinite; }
+
+        
+
+        .grayscale-map iframe {
+
+            filter: grayscale(100%) contrast(0.8) opacity(0.8);
+
+            transition: all 0.5s ease;
+
+        }
+
+        .grayscale-map iframe:hover { filter: grayscale(0%); }
+
+    </style>
+
+</head>
+
+<body class="font-montserrat text-gray-800">
+
+
+
+    <div id="welcome-overlay" class="fixed inset-0 z-[100] bg-marfil flex flex-col items-center justify-center transition-opacity duration-1000">
+
+        <div class="text-center p-8 border border-dorado/30 m-4">
+
+            <h2 class="font-playfair text-dorado text-xl tracking-[0.2em] mb-4 uppercase">Bienvenidos</h2>
+
+            <h1 class="font-playfair text-4xl md:text-6xl mb-8">Valeria & Sebastián</h1>
+
+            <button onclick="startExperience()" class="px-10 py-4 border border-dorado text-dorado hover:bg-dorado hover:text-white transition-all duration-500 tracking-widest uppercase text-xs">
+
+                Abrir Invitación
+
             </button>
+
         </div>
+
     </div>
 
+
+
     <audio id="bg-music" loop>
+
         <source src="./TE_AMO_-_FRANCO_DE_VITA_.mp3" type="audio/mpeg">
+
     </audio>
 
-    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-        <img src="./foto1.png" class="absolute inset-0 w-full h-full object-cover opacity-70 hero-zoom" alt="Hero">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-marfil z-10"></div>
+
+
+    <div id="music-control" class="hidden fixed bottom-6 right-6 z-50">
+
+        <button onclick="toggleMusic()" class="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center border border-dorado/30 music-pulse">
+
+            <span id="music-icon" class="text-dorado text-xl">♫</span>
+
+        </button>
+
+    </div>
+
+
+
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+
+        <div class="absolute inset-0 bg-black/30 z-10"></div>
+
+        <img src="./foto1.png" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80'" class="absolute inset-0 w-full h-full object-cover scale-105" alt="Hero">
+
         
-        <div class="relative z-20 text-center text-white">
-            <h2 class="font-cinzel tracking-[1.2em] text-[9px] mb-12 reveal uppercase opacity-80">El Estreno de Nuestras Vidas</h2>
-            <h1 class="font-cormorant text-8xl md:text-[14rem] mb-6 reveal italic leading-none tracking-tight">V & S</h1>
-            <p class="font-cinzel text-xl md:text-3xl tracking-[0.6em] reveal uppercase">19 . 12 . 2026</p>
+
+        <div class="relative z-20 text-center text-white px-4">
+
+            <p class="font-montserrat tracking-[0.5em] uppercase text-sm mb-6 reveal">Nuestra Historia Comienza</p>
+
+            <h1 class="font-playfair text-6xl md:text-9xl mb-4 reveal">V & S</h1>
+
+            <p class="font-playfair italic text-2xl md:text-3xl reveal">19 de Diciembre, 2026</p>
+
         </div>
+
     </header>
 
-    <section class="py-48 px-6 bg-marfil text-center relative">
-        <div class="max-w-4xl mx-auto reveal">
-            <p class="font-cinzel text-doradoOscuro tracking-[0.6em] text-[10px] mb-12 uppercase">Para nuestro Invitado de Honor</p>
-            <h2 class="font-handwriting text-8xl md:text-9xl text-dorado mb-16">Laura Silva</h2>
-            <div class="w-24 h-px bg-dorado/20 mx-auto mb-16"></div>
-            <p class="font-cormorant text-gray-600 text-3xl italic leading-relaxed max-w-3xl mx-auto">
-                "Hay películas que nos marcan el alma, pero nuestra historia favorita es la que estamos por escribir junto a ti."
+
+
+    <section class="py-24 px-6 bg-marfil text-center">
+
+        <div class="max-w-3xl mx-auto reveal">
+
+            <span class="text-salvia font-semibold tracking-widest uppercase text-xs">Invitado de Honor</span>
+
+            <h2 class="font-playfair text-4xl md:text-5xl my-6 text-dorado">Laura Silva</h2>
+
+            <p class="text-gray-600 leading-relaxed text-lg italic">
+
+                "Con el corazón lleno de amor y gratitud, queremos invitarte a ser parte de uno de los días más importantes de nuestras vidas."
+
             </p>
+
+            <div class="w-24 h-px bg-dorado mx-auto mt-12"></div>
+
         </div>
+
     </section>
 
-    <section class="py-32 bg-white relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h3 class="font-cinzel text-center text-3xl tracking-[0.7em] mb-48 reveal uppercase text-gray-900">Nuestra Historia</h3>
+
+
+    <section class="py-20 bg-white overflow-hidden">
+
+        <div class="container mx-auto px-4">
+
+            <h2 class="text-center font-playfair text-4xl mb-20 reveal">Nuestra Historia</h2>
+
             
+
             <div class="relative">
-                <div class="hidden md:block timeline-path"></div>
 
-                <div class="flex flex-col md:flex-row items-center mb-64 reveal">
-                    <div class="w-full md:w-1/2 md:pr-24 text-center md:text-right mb-20 md:mb-0">
-                        <span class="font-cinzel text-doradoOscuro text-xs tracking-widest block mb-5 uppercase">ACTO I</span>
-                        <h4 class="font-cormorant text-5xl mb-8 italic">El Encuentro</h4>
-                        <p class="text-gray-500 font-light text-xl leading-relaxed">Un café en San Luis Potosí fue el escenario de nuestro primer diálogo. Ahí supimos que el resto de los personajes ya no importaban.</p>
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-dorado/20"></div>
+
+
+
+                <div class="flex flex-col md:flex-row items-center mb-24 reveal">
+
+                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0 text-center md:text-right">
+
+                        <h3 class="font-playfair text-2xl mb-4">El primer encuentro</h3>
+
+                        <p class="text-gray-500">Todo comenzó una tarde lluviosa en San Luis Potosí, un café fue el pretexto perfecto.</p>
+
                     </div>
-                    <div class="w-full md:w-1/2 relative group overflow-hidden rounded-sm shadow-2xl">
-                        <img src="./foto2.png" class="w-full h-[550px] object-cover transition-transform duration-[4s] cubic-bezier(0.2, 0, 0.2, 1) group-hover:scale-110">
-                        <div class="gold-light-entry"></div>
+
+                    <div class="w-full md:w-1/2 md:pl-12">
+
+                        <img src="./foto1.png" onerror="this.src='https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80'" class="w-full h-64 object-cover rounded shadow-lg">
+
                     </div>
+
                 </div>
 
-                <div class="flex flex-col md:flex-row-reverse items-center mb-64 reveal">
-                    <div class="w-full md:w-1/2 md:pl-24 text-center md:text-left mb-20 md:mb-0">
-                        <span class="font-cinzel text-doradoOscuro text-xs tracking-widest block mb-5 uppercase">ACTO II</span>
-                        <h4 class="font-cormorant text-5xl mb-8 italic">La Complicidad</h4>
-                        <p class="text-gray-500 font-light text-xl leading-relaxed">Libros, viajes y risas infinitas. Aprendimos que el amor no es verse el uno al otro, sino mirar juntos en la misma dirección.</p>
+
+
+                <div class="flex flex-col md:flex-row-reverse items-center mb-24 reveal">
+
+                    <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0 text-center md:text-left">
+
+                        <h3 class="font-playfair text-2xl mb-4">Primeras Risas</h3>
+
+                        <p class="text-gray-500">Esa conversación sobre libros se transformó en la base de nuestra complicidad.</p>
+
                     </div>
-                    <div class="w-full md:w-1/2 relative group overflow-hidden rounded-sm shadow-2xl">
-                        <img src="./foto3.png" class="w-full h-[550px] object-cover transition-transform duration-[4s] cubic-bezier(0.2, 0, 0.2, 1) group-hover:scale-110">
+
+                    <div class="w-full md:w-1/2 md:pr-12">
+
+                        <img src="./foto2.png" onerror="this.src='https://images.unsplash.com/photo-1465495910483-3457495867cf?q=80'" class="w-full h-64 object-cover rounded shadow-lg">
+
                     </div>
+
                 </div>
 
-                <div class="flex flex-col md:flex-row items-center reveal">
-                    <div class="w-full md:w-1/2 md:pr-24 text-center md:text-right mb-20 md:mb-0">
-                        <span class="font-cinzel text-doradoOscuro text-xs tracking-widest block mb-5 uppercase">ACTO FINAL</span>
-                        <h4 class="font-cormorant text-5xl mb-8 italic">La Promesa</h4>
-                        <p class="text-gray-500 font-light text-xl leading-relaxed">5 años después, el guión nos trajo aquí. Una promesa que durará más que cualquier crédito final.</p>
+
+
+                <div class="flex flex-col md:flex-row items-center mb-24 reveal">
+
+                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0 text-center md:text-right">
+
+                        <h3 class="font-playfair text-2xl mb-4">Viajes y Sueños</h3>
+
+                        <p class="text-gray-500">Recorrimos lugares, pero lo más importante fue recorrer el camino juntos.</p>
+
                     </div>
-                    <div class="w-full md:w-1/2 relative group overflow-hidden rounded-sm shadow-2xl">
-                        <img src="./foto7.png" class="w-full h-[550px] object-cover transition-transform duration-[4s] cubic-bezier(0.2, 0, 0.2, 1) group-hover:scale-110">
+
+                    <div class="w-full md:w-1/2 md:pl-12">
+
+                        <img src="./foto5.png" onerror="this.src='https://images.unsplash.com/photo-1522673607200-1648835479ab?q=80'" class="w-full h-64 object-cover rounded shadow-lg">
+
                     </div>
+
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="py-32 bg-negroCine text-white border-t border-dorado/10">
-        <div class="container mx-auto px-6 mb-24 text-center">
-            <h3 class="font-cinzel text-2xl tracking-[1em] reveal uppercase opacity-90">Fragmentos de Amor</h3>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-2 px-2">
-            <img src="./foto4.png" class="w-full h-[650px] object-cover opacity-60 hover:opacity-100 transition-opacity duration-[1.5s] reveal cursor-crosshair">
-            <img src="./foto5.png" class="w-full h-[650px] object-cover opacity-60 hover:opacity-100 transition-opacity duration-[1.5s] reveal" style="transition-delay: 250ms;">
-            <img src="./foto6.png" class="w-full h-[650px] object-cover opacity-60 hover:opacity-100 transition-opacity duration-[1.5s] reveal" style="transition-delay: 500ms;">
-            <img src="./foto8.png" class="w-full h-[650px] object-cover opacity-60 hover:opacity-100 transition-opacity duration-[1.5s] reveal" style="transition-delay: 750ms;">
-        </div>
-    </section>
 
-    <section class="py-48 bg-marfil">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-28 items-center max-w-7xl">
-            <div class="reveal">
-                <h3 class="font-cinzel text-3xl mb-16 text-doradoOscuro tracking-[0.5em] uppercase">Detalles de la Gala</h3>
-                <div class="space-y-16">
-                    <div class="border-l-2 border-dorado/20 pl-10 relative">
-                        <span class="absolute -left-[9px] top-0 w-4 h-4 bg-dorado rounded-full border-2 border-marfil"></span>
-                        <h4 class="font-cinzel text-xs tracking-widest text-salvia mb-5 uppercase">Dónde & Cuándo</h4>
-                        <p class="font-cormorant text-4xl italic mb-2 tracking-tight">Hacienda de los Morales</p>
-                        <p class="text-gray-500 text-lg mb-8 font-light">19 de Diciembre | 17:00 HRS</p>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+V+%26+S" class="inline-block px-12 py-4 bg-dorado text-white font-cinzel text-[10px] tracking-[0.3em] uppercase hover:bg-black transition-colors duration-500 shadow-md">Agendar Gala</a>
+
+                <div class="flex flex-col md:flex-row-reverse items-center mb-24 reveal">
+
+                    <div class="w-full md:w-1/2 md:pl-12 mb-8 md:mb-0 text-center md:text-left">
+
+                        <h3 class="font-playfair text-2xl mb-4">Creciendo Juntos</h3>
+
+                        <p class="text-gray-500">Aprendimos que el amor es una decisión diaria de apoyo y admiración.</p>
+
                     </div>
-                    
-                    <div class="border-l-2 border-dorado/20 pl-10 relative">
-                        <span class="absolute -left-[9px] top-0 w-4 h-4 bg-dorado rounded-full border-2 border-marfil"></span>
-                        <h4 class="font-cinzel text-xs tracking-widest text-salvia mb-5 uppercase">Mesa de Regalos</h4>
-                        <div class="flex space-x-8">
-                            <a href="#" class="font-cinzel text-[10px] border-b border-dorado/40 text-doradoOscuro tracking-[0.3em] uppercase hover:text-black hover:border-black transition-colors">AMAZON</a>
-                            <a href="#" class="font-cinzel text-[10px] border-b border-dorado/40 text-doradoOscuro tracking-[0.3em] uppercase hover:text-black hover:border-black transition-colors">LIVERPOOL</a>
-                        </div>
+
+                    <div class="w-full md:w-1/2 md:pr-12">
+
+                        <img src="./foto3.png" onerror="this.src='https://images.unsplash.com/photo-1529636798458-92182e662485?q=80'" class="w-full h-64 object-cover rounded shadow-lg">
+
                     </div>
+
                 </div>
-            </div>
-            <div class="grayscale-map h-[550px] rounded-sm shadow-2xl reveal overflow-hidden border border-dorado/10 relative">
-                <div class="absolute inset-0 gold-light-entry opacity-30"></div>
-                <iframe src="http://googleusercontent.com/maps.google.com/3" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
 
-    <section class="py-48 bg-white border-t border-dorado/5">
-        <div class="container mx-auto px-6 text-center max-w-6xl">
-            <div class="max-w-4xl mx-auto glass-premium p-24 relative rounded-sm">
-                <div class="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-dorado/20"></div>
-                <div class="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-dorado/20"></div>
-
-                <h3 class="font-cinzel text-4xl mb-14 tracking-[0.5em] uppercase text-doradoOscuro">¿Nos Acompañas?</h3>
-                <p class="font-cormorant text-2xl text-gray-500 italic mb-20 leading-relaxed">Agradecemos confirmar su asistencia antes del<br>15 de Noviembre de 2026.</p>
                 
-                <div class="flex flex-col items-center mb-20">
-                    <div id="qrcode" class="p-8 bg-white border border-marfil shadow-inner mb-8 rounded-sm"></div>
-                    <p class="font-cinzel text-[10px] tracking-[0.6em] text-gray-400 uppercase">PASE PERSONALIZADO DIGITAL</p>
+
+                <div class="flex flex-col md:flex-row items-center mb-24 reveal">
+
+                    <div class="w-full md:w-1/2 md:pr-12 mb-8 md:mb-0 text-center md:text-right">
+
+                        <h3 class="font-playfair text-2xl mb-4">La Promesa</h3>
+
+                        <p class="text-gray-500">Después de 5 años, decidimos que una vida no es suficiente para amarnos.</p>
+
+                    </div>
+
+                    <div class="w-full md:w-1/2 md:pl-12">
+
+                        <img src="./foto7.png" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80'" class="w-full h-64 object-cover rounded shadow-lg">
+
+                    </div>
+
                 </div>
 
-                <a href="https://wa.me/4121156845?text=Confirmo%20con%20gusto%20asistencia%20a%20Premier" class="inline-block px-24 py-6 bg-dorado text-white font-cinzel text-[11px] tracking-[0.6em] uppercase hover:bg-black transition-all duration-1000 shadow-2xl">
-                    Confirmar vía WhatsApp
-                </a>
             </div>
+
         </div>
+
     </section>
 
-    <footer class="py-32 bg-marfil text-center border-t border-dorado/5">
-        <p class="font-cinzel text-[10px] tracking-[1em] text-gray-300 uppercase">Trisaro Studio | Hollywood Digital Experiences © 2026</p>
+
+
+    <section class="py-20 bg-salvia text-white">
+
+        <div class="container mx-auto px-4 text-center">
+
+            <h2 class="font-playfair text-3xl mb-12 reveal">Faltan Solo...</h2>
+
+            <div class="flex justify-center space-x-4 md:space-x-12 reveal">
+
+                <div class="flex flex-col">
+
+                    <span id="days" class="text-4xl md:text-6xl font-playfair">00</span>
+
+                    <span class="text-xs uppercase tracking-widest mt-2">Días</span>
+
+                </div>
+
+                <div class="flex flex-col">
+
+                    <span id="hours" class="text-4xl md:text-6xl font-playfair">00</span>
+
+                    <span class="text-xs uppercase tracking-widest mt-2">Horas</span>
+
+                </div>
+
+                <div class="flex flex-col">
+
+                    <span id="minutes" class="text-4xl md:text-6xl font-playfair">00</span>
+
+                    <span class="text-xs uppercase tracking-widest mt-2">Minutos</span>
+
+                </div>
+
+                <div class="flex flex-col">
+
+                    <span id="seconds" class="text-4xl md:text-6xl font-playfair">00</span>
+
+                    <span class="text-xs uppercase tracking-widest mt-2">Segundos</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="py-24 bg-marfil">
+
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
+
+            <div class="reveal">
+
+                <h2 class="font-playfair text-4xl mb-8 text-dorado">Detalles del Evento</h2>
+
+                <div class="space-y-6">
+
+                    <div>
+
+                        <h4 class="font-semibold uppercase text-xs tracking-widest text-salvia mb-2">Ubicación</h4>
+
+                        <p class="text-xl">Salón La Princesa</p>
+
+                        <p class="text-gray-500">San Luis Potosí, México</p>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold uppercase text-xs tracking-widest text-salvia mb-2">Cuándo</h4>
+
+                        <p class="text-xl">19 de Diciembre, 2026</p>
+
+                        <p class="text-gray-500">Recepción: 5:00 PM</p>
+
+                    </div>
+
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Valeria+y+Sebastian&dates=20260303T230000Z/20260304T050000Z&details=Acompáñanos+a+celebrar+nuestra+boda.&location=La+Princesa,+San+Luis+Potosi" target="_blank" class="inline-block mt-4 px-8 py-3 bg-dorado text-white text-xs tracking-widest uppercase hover:bg-opacity-90 transition-all">
+
+                        Agregar a Google Calendar
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="grayscale-map rounded-lg overflow-hidden shadow-2xl h-96 reveal">
+
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.970459084901!2d-100.9515218!3d22.127102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842aa246db228f09%3A0xfd323900209d13a4!2sLa%20Princesa%20Salon%20De%20Eventos!5e0!3m2!1ses-419!2smx!4v1772440634443!5m2!1ses-419!2smx" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<section class="py-24 bg-white border-t border-dorado/10">
+
+        <div class="container mx-auto px-4">
+
+            <div class="grid md:grid-cols-2 gap-12">
+
+                
+
+                <div class="reveal text-center p-12 glass-card rounded-lg">
+
+                    <div class="flex justify-center mb-6">
+
+                        <svg class="w-12 h-12 text-dorado/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 8l-2-2H5L3 8m18 0l-2 10H5L3 8m18 0h-3.5a1 1 0 01-1-1V5a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H3m18 0V4a1 1 0 00-1-1H4a1 1 0 00-1 1v4m18 4h-3.5a1 1 0 01-1-1V9a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H3"></path>
+
+                        </svg>
+
+                    </div>
+
+                    <h3 class="font-playfair text-3xl mb-4 text-dorado">Código de Vestimenta</h3>
+
+                    <p class="font-semibold uppercase text-[10px] tracking-[0.3em] text-salvia mb-4">Formal / Gala</p>
+
+                    <p class="text-gray-500 italic font-montserrat text-sm leading-relaxed">
+
+                        "Nos encantaría verte con tus mejores galas para celebrar juntos este momento inolvidable."
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="reveal text-center p-12 glass-card rounded-lg border-dorado/20">
+
+                    <div class="flex justify-center mb-6">
+
+                        <svg class="w-12 h-12 text-dorado/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+
+                        </svg>
+
+                    </div>
+
+                    <h3 class="font-playfair text-3xl mb-4 text-dorado">Mesa de Regalos</h3>
+
+                    <p class="text-gray-500 font-montserrat text-sm mb-8 leading-relaxed">
+
+                        Su presencia es nuestro mejor regalo, pero si desean darnos un detalle, aquí tienen nuestras mesas sugeridas:
+
+                    </p>
+
+                    <div class="flex flex-col space-y-4 max-w-xs mx-auto">
+
+                        <a href="URL_DE_AMAZON_AQUÍ" target="_blank" class="px-6 py-3 border border-dorado text-dorado hover:bg-dorado hover:text-white transition-all duration-500 uppercase text-[10px] tracking-widest">
+
+                            Amazon Wedding
+
+                        </a>
+
+                        <a href="URL_DE_LIVERPOOL_AQUÍ" target="_blank" class="px-6 py-3 border border-dorado text-dorado hover:bg-dorado hover:text-white transition-all duration-500 uppercase text-[10px] tracking-widest">
+
+                            Mesa de Liverpool
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="py-24 bg-white">
+
+        <div class="container mx-auto px-4">
+
+            <h2 class="text-center font-playfair text-4xl mb-16 reveal">Momentos Compartidos</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                <img src="./foto2.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto3.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto4.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto5.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto6.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto7.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto8.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+                <img src="./foto1.png" onclick="openLightbox(this.src)" onerror="this.src='https://images.unsplash.com/photo-1522673607200-1648835479ab?q=80'" class="w-full h-64 object-cover cursor-pointer hover:opacity-80 transition-all reveal rounded">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="py-24 bg-marfil border-t border-dorado/10">
+
+        <div class="container mx-auto px-4 text-center">
+
+            <div class="max-w-2xl mx-auto glass-card p-12 rounded-lg reveal">
+
+                <h2 class="font-playfair text-4xl mb-6 text-dorado">¿Nos acompañas?</h2>
+
+                <p class="mb-10 text-gray-600">Por favor, confirma tu asistencia antes del 15 de Noviembre de 2026 para una mejor organización.</p>
+
+                
+
+                <div class="flex flex-col items-center mb-10">
+
+                    <div id="qrcode" class="p-4 bg-white shadow-md mb-4"></div>
+
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400">Pase Digital Personalizado</p>
+
+                </div>
+
+
+
+                <a href="https://wa.me/4121156845?text=Hola%20Valeria%20y%20Sebastian,%20soy%20Laura%20Silva%20y%20confirmo%20con%20mucho%20gusto%20mi%20asistencia%20a%20su%20boda." target="_blank" class="block w-full py-4 bg-salvia text-white rounded-full font-semibold hover:bg-opacity-90 shadow-lg transition-all">
+
+                    Confirmar vía WhatsApp
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <footer class="py-20 bg-white text-center">
+
+        <div class="reveal">
+
+            <p class="font-playfair italic text-xl mb-6 px-4 max-w-xl mx-auto">
+
+                "Tu presencia será el regalo más grande para nosotros. Acompáñanos a celebrar el amor, la amistad y el comienzo de esta nueva etapa juntos."
+
+            </p>
+
+            <h3 class="font-playfair text-3xl text-dorado">V & S</h3>
+
+            <p class="text-[10px] uppercase tracking-widest text-gray-400 mt-12">Trisaro Studio Digital Luxury Experiences © 2026</p>
+
+        </div>
+
     </footer>
 
+
+
+    <div id="lightbox" class="fixed inset-0 z-[200] bg-black/90 hidden items-center justify-center p-4" onclick="this.classList.add('hidden')">
+
+        <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain shadow-2xl">
+
+    </div>
+
+
+
     <script>
-        // Efecto de aparición lenta del título en la Intro
-        setTimeout(() => {
-            const title = document.getElementById('intro-title');
-            if(title) title.style.opacity = '1';
-        }, 1200);
 
-        // FUNCIÓN MAESTRA: LANZAR LA PELÍCULA
-        function launchMovie() {
-            const intro = document.getElementById('hollywood-intro');
+        // Start Experience & Audio
+
+        function startExperience() {
+
+            const overlay = document.getElementById('welcome-overlay');
+
             const music = document.getElementById('bg-music');
+
+            const control = document.getElementById('music-control');
+
             
-            if(intro) {
-                intro.style.opacity = '0';
-                // La música comienza con la animación
-                music.play().catch(e => console.log("Audio interact required on this browser"));
-                
-                setTimeout(() => {
-                    intro.style.visibility = 'hidden';
-                    startCinematicObserver(); // Inicia animaciones de scroll
-                }, 2500);
+
+            overlay.style.opacity = '0';
+
+            setTimeout(() => {
+
+                overlay.style.display = 'none';
+
+                control.classList.remove('hidden');
+
+            }, 1000);
+
+
+
+            music.play().catch(e => console.log("Audio play blocked by browser"));
+
+        }
+
+
+
+        // Music Toggle
+
+        function toggleMusic() {
+
+            const music = document.getElementById('bg-music');
+
+            const icon = document.getElementById('music-icon');
+
+            if (music.paused) {
+
+                music.play();
+
+                icon.innerText = '♫';
+
+            } else {
+
+                music.pause();
+
+                icon.innerText = '🔇';
+
             }
+
         }
 
-        // Observador para animaciones suaves de revelación
-        function startCinematicObserver() {
-            const observerOptions = { threshold: 0.12 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, observerOptions);
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Countdown Timer
+
+        const eventDate = new Date("2026-12-19T17:00:00-06:00").getTime();
+
+        
+
+        setInterval(() => {
+
+            const now = new Date().getTime();
+
+            const distance = eventDate - now;
+
+
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+
+            document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+
+            document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+
+        }, 1000);
+
+
+
+        // Reveal Animations with Intersection Observer
+
+        const observerOptions = { threshold: 0.1 };
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add('active');
+
+                }
+
+            });
+
+        }, observerOptions);
+
+
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+
+        // Lightbox
+
+        function openLightbox(src) {
+
+            const lb = document.getElementById('lightbox');
+
+            document.getElementById('lightbox-img').src = src;
+
+            lb.classList.remove('hidden');
+
+            lb.classList.add('flex');
+
         }
 
-        // Generar QR de Lujo Personalizado (V&S 2026)
+
+
+        // QR Code Generation
+
         new QRCode(document.getElementById("qrcode"), {
-            text: "INVITADO: Laura Silva | BODA V&S | PREMIER 2026",
-            width: 170,
-            height: 170,
-            colorDark : "#C6A75E", // QR Dorado
+
+            text: "INVITADO: Laura Silva | BODA V&S 2026",
+
+            width: 128,
+
+            height: 128,
+
+            colorDark : "#9CAF88",
+
             colorLight : "#ffffff",
+
             correctLevel : QRCode.CorrectLevel.H
+
         });
+
     </script>
+
+    <script>
+
+    // Desactiva el menú del clic derecho para evitar "Guardar imagen como"
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+
+
+    // Bloquea el arrastre de imágenes al escritorio
+
+    document.addEventListener('dragstart', event => event.preventDefault());
+
+</script>
+
+    <script>
+
+        // Aquí es donde pegas el código de bloqueo
+
+        document.onkeydown = function(e) {
+
+            // Bloquea F12, Ctrl+Shift+I (Inspeccionar) y Ctrl+U (Ver código fuente)
+
+            if(e.keyCode == 123) return false;
+
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+
+        };
+
+    </script>
+
 </body>
+
+
+
 </html>
 
 
