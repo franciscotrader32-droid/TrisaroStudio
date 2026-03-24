@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -33,14 +34,8 @@
     </script>
 
     <style>
-        /* BLOQUEOS DE SEGURIDAD Y UX */
-        body { 
-            -webkit-user-select: none; 
-            user-select: none; 
-            background-color: #FDFCFB; 
-            overflow-x: hidden;
-            touch-action: pan-y; /* Permite scroll pero limita gestos de zoom */
-        }
+        /* BLOQUEOS DE SEGURIDAD */
+        body { -webkit-user-select: none; user-select: none; background-color: #FDFCFB; overflow-x: hidden; touch-action: pan-y; }
         img { -webkit-touch-callout: none; pointer-events: none; transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); }
         
         .img-container:hover img { transform: scale(1.08) rotate(1deg); }
@@ -74,12 +69,11 @@
 
         #hollywood-intro { transition: transform 2.5s cubic-bezier(0.7, 0, 0.3, 1); }
 
-        /* Filtro de Mapa Elegante */
-        .map-luxury {
-            filter: grayscale(100%) contrast(1.1) opacity(0.8);
+        .grayscale-luxury {
+            filter: grayscale(100%) contrast(1.1);
             transition: all 0.8s ease;
         }
-        .map-luxury:hover { filter: grayscale(0%) opacity(1); }
+        .grayscale-luxury:hover { filter: grayscale(0%); }
     </style>
 </head>
 <body class="font-montserrat text-gray-900 overflow-x-hidden">
@@ -104,114 +98,105 @@
         <source src="./TE_AMO_-_FRANCO_DE_VITA_.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="music-control" class="hidden fixed bottom-6 md:bottom-8 right-6 md:right-8 z-[60]">
-        <button onclick="toggleMusic()" class="w-12 h-12 md:w-14 md:h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-dorado/20 shadow-2xl">
-            <span id="music-icon" class="text-dorado text-lg md:text-xl">♫</span>
+    <div id="music-control" class="hidden fixed bottom-8 right-8 z-[60]">
+        <button onclick="toggleMusic()" class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-dorado/20 shadow-2xl">
+            <span id="music-icon" class="text-dorado text-xl">♫</span>
         </button>
     </div>
 
-    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black text-center">
         <img src="./foto1.png" class="absolute inset-0 w-full h-full object-cover opacity-70 hero-zoom" alt="Hero">
         <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-marfil z-10"></div>
-        <div class="relative z-20 text-center text-white px-4">
-            <h2 class="font-cinzel tracking-[1em] text-[8px] md:text-[9px] mb-8 md:mb-12 reveal uppercase opacity-80">En una producción de amor eterna</h2>
-            <h1 class="font-cormorant text-4xl md:text-8xl mb-6 reveal italic leading-tight tracking-tighter uppercase px-2">Valeria García <br> & <br> Sebastián Mendoza</h1>
-            <p class="font-cinzel text-lg md:text-3xl tracking-[0.5em] reveal uppercase">19 . 12 . 2026</p>
+        <div class="relative z-20 px-4">
+            <h2 class="font-cinzel tracking-[1em] text-[8px] md:text-[9px] mb-8 md:mb-12 reveal uppercase opacity-80 text-white">En una producción de amor eterna</h2>
+            <h1 class="font-cormorant text-4xl md:text-8xl mb-6 reveal italic leading-tight tracking-tighter uppercase px-2 text-white">Valeria García <br> & <br> Sebastián Mendoza</h1>
+            <p class="font-cinzel text-lg md:text-3xl tracking-[0.5em] reveal uppercase text-white">19 . 12 . 2026</p>
         </div>
     </header>
 
     <section class="py-16 md:py-24 bg-marfil text-center">
         <div class="container mx-auto px-4 reveal">
-            <h3 class="font-cinzel text-[8px] md:text-xs tracking-[0.6em] md:tracking-[0.8em] text-dorado mb-12 md:mb-16 uppercase">El Gran Estreno Comienza en:</h3>
+            <h3 class="font-cinzel text-[8px] md:text-xs tracking-[0.6em] md:tracking-[0.8em] text-dorado mb-12 uppercase">El Gran Estreno Comienza en:</h3>
             <div class="flex justify-center space-x-4 md:space-x-12">
-                <div class="flex flex-col"><span id="days" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] md:text-[9px] uppercase tracking-widest mt-2">Días</span></div>
-                <div class="flex flex-col"><span id="hours" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] md:text-[9px] uppercase tracking-widest mt-2">Horas</span></div>
-                <div class="flex flex-col"><span id="minutes" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] md:text-[9px] uppercase tracking-widest mt-2">Min</span></div>
-                <div class="flex flex-col"><span id="seconds" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] md:text-[9px] uppercase tracking-widest mt-2">Seg</span></div>
+                <div class="flex flex-col"><span id="days" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] uppercase tracking-widest mt-2">Días</span></div>
+                <div class="flex flex-col"><span id="hours" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] uppercase tracking-widest mt-2">Horas</span></div>
+                <div class="flex flex-col"><span id="minutes" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] uppercase tracking-widest mt-2">Min</span></div>
+                <div class="flex flex-col"><span id="seconds" class="font-cormorant text-4xl md:text-7xl">00</span><span class="text-[8px] uppercase tracking-widest mt-2">Seg</span></div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 md:py-32 bg-white relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <h3 class="font-cinzel text-center text-2xl md:text-3xl tracking-[0.6em] md:tracking-[0.8em] mb-24 md:mb-48 reveal uppercase">Nuestra Historia</h3>
-            <div class="relative space-y-32 md:space-y-64">
+    <section class="py-16 md:py-32 bg-white relative overflow-hidden px-6">
+        <div class="container mx-auto">
+            <h3 class="font-cinzel text-center text-2xl md:text-3xl tracking-[0.6em] mb-24 reveal uppercase">Nuestra Historia</h3>
+            <div class="relative space-y-24 md:space-y-64">
                 <div class="flex flex-col md:flex-row items-center reveal">
                     <div class="w-full md:w-1/2 md:pr-24 text-center md:text-right mb-12 md:mb-0">
-                        <span class="font-cinzel text-dorado text-xs tracking-widest block mb-4 md:mb-6 uppercase">ACTO I</span>
-                        <h4 class="font-cormorant text-4xl md:text-5xl mb-6 md:mb-8 italic">El Encuentro</h4>
-                        <p class="text-gray-400 font-light text-lg md:text-xl leading-relaxed">Un café en San Luis Potosí que se convirtió en el inicio de todo.</p>
+                        <span class="font-cinzel text-dorado text-xs tracking-widest block mb-4 uppercase">ACTO I</span>
+                        <h4 class="font-cormorant text-4xl italic">El Encuentro</h4>
+                        <p class="text-gray-400 font-light text-lg leading-relaxed">Un café en San Luis Potosí que se convirtió en el inicio de todo.</p>
                     </div>
-                    <div class="w-full md:w-1/2 overflow-hidden img-container rounded-sm shadow-2xl">
-                        <img src="./foto2.png" class="w-full h-[400px] md:h-[600px] object-cover">
+                    <div class="w-full md:w-1/2 overflow-hidden img-container rounded-sm shadow-2xl h-[400px] md:h-[600px]">
+                        <img src="./foto2.png" class="w-full h-full object-cover">
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </section>
 
-    <section class="py-24 md:py-40 bg-marfil">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 md:gap-32 items-center">
+    <section class="py-20 md:py-40 bg-marfil">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div class="reveal">
-                <h3 class="font-cinzel text-3xl md:text-4xl mb-8 md:mb-12 text-dorado tracking-[0.4em] uppercase">Donde la Magia Sucede</h3>
+                <h3 class="font-cinzel text-3xl md:text-4xl mb-8 text-dorado tracking-[0.4em] uppercase">Ubicación del Estreno</h3>
                 <div class="space-y-8 border-l-2 border-dorado/20 pl-8">
                     <div>
                         <h4 class="font-cinzel text-xs tracking-widest text-salvia mb-2 uppercase">Lugar</h4>
-                        <p class="font-cormorant text-2xl md:text-4xl italic">Salón La Princesa</p>
+                        <p class="font-cormorant text-3xl italic">Salón La Princesa</p>
                         <p class="text-gray-500 font-light">San Luis Potosí, México</p>
                     </div>
-                    <div>
-                        <h4 class="font-cinzel text-xs tracking-widest text-salvia mb-2 uppercase">Fecha</h4>
-                        <p class="font-cormorant text-2xl md:text-3xl italic">19 de Diciembre, 2026</p>
-                        <p class="text-gray-500 font-light">Recepción: 17:00 HRS</p>
-                    </div>
-                    <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Valeria+y+Sebastián&dates=20261219T230000Z/20261220T050000Z&details=Acompáñanos+a+celebrar+nuestra+boda+en+Salón+La+Princesa.&location=Salón+La+Princesa,+San+Luis+Potosí" target="_blank" class="inline-block mt-4 px-10 py-4 bg-doradoOscuro text-white font-cinzel text-[10px] tracking-widest uppercase hover:bg-black transition-all shadow-xl">
-                        Añadir al Calendario
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Valeria+y+Sebastián&dates=20261219T230000Z/20261220T050000Z&details=Acompáñanos+a+celebrar+nuestra+boda.&location=Salón+La+Princesa,+San+Luis+Potosí" target="_blank" class="inline-block px-10 py-4 bg-doradoOscuro text-white font-cinzel text-[10px] tracking-widest uppercase hover:bg-black transition-all shadow-xl">
+                        Agendar en Google Calendar
                     </a>
                 </div>
             </div>
             <div class="reveal h-[400px] md:h-[500px] overflow-hidden rounded-sm shadow-2xl border border-dorado/10">
-                <iframe class="map-luxury w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3695.123456789!2d-100.975!3d22.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDA5JzAwLjAiTiAxMDDCsDU4JzMwLjAiVw!5e0!3m2!1ses!2smx!4v123456789" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe class="grayscale-luxury w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3694.8876110300435!2d-100.976!3d22.156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDA5JzIxLjYiTiAxMDDCsDU4JzMzLjYiVw!5e0!3m2!1ses!2smx!4v1710000000000" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <section class="py-24 md:py-48 bg-white text-center">
-        <div class="container mx-auto px-4 md:px-6 max-w-5xl">
-            <div class="glass-premium p-8 md:p-24 reveal relative">
-                <h3 class="font-cinzel text-3xl md:text-4xl mb-8 md:mb-12 tracking-[0.4em] uppercase text-dorado">Confirmar Asistencia</h3>
-                <p id="guest-welcome" class="font-handwriting text-4xl md:text-5xl text-doradoOscuro mb-12 md:mb-16 italic text-center">Hola Laura Silva</p>
-                
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 text-left mb-12 md:mb-16">
+    <section class="py-20 md:py-48 bg-white text-center">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="glass-premium p-8 md:p-24 reveal">
+                <h3 class="font-cinzel text-3xl md:text-4xl mb-12 tracking-[0.4em] uppercase text-dorado">Confirmar Asistencia</h3>
+                <p id="guest-welcome" class="font-handwriting text-5xl text-doradoOscuro mb-16 italic px-2">Hola Laura Silva</p>
+                <div class="grid md:grid-cols-2 gap-8 text-left mb-16">
                     <div>
-                        <label class="font-cinzel text-[9px] md:text-[10px] tracking-widest text-gray-400 block mb-4 uppercase">Lugares Reservados</label>
-                        <select id="guest-count" class="w-full bg-transparent border-b border-dorado/30 py-3 md:py-4 font-cormorant text-xl md:text-2xl focus:outline-none">
+                        <label class="font-cinzel text-[10px] tracking-widest text-gray-400 block mb-4 uppercase">Lugares</label>
+                        <select id="guest-count" class="w-full bg-transparent border-b border-dorado/30 py-4 font-cormorant text-2xl focus:outline-none">
                             <option value="1">Invitado de honor (1 lugar)</option>
                             <option value="2">2 Lugares</option>
                             <option value="3">3 Lugares</option>
-                            <option value="4">4 Lugares</option>
                         </select>
                     </div>
                     <div>
-                        <label class="font-cinzel text-[9px] md:text-[10px] tracking-widest text-gray-400 block mb-4 uppercase">¿Alguna alergia o restricción?</label>
-                        <input type="text" id="allergies" placeholder="Ej: Celíaco, Vegano..." class="w-full bg-transparent border-b border-dorado/30 py-3 md:py-4 font-cormorant text-xl md:text-2xl focus:outline-none placeholder:text-gray-300">
+                        <label class="font-cinzel text-[10px] tracking-widest text-gray-400 block mb-4 uppercase">Alergias</label>
+                        <input type="text" id="allergies" placeholder="Ej: Vegano" class="w-full bg-transparent border-b border-dorado/30 py-4 font-cormorant text-2xl focus:outline-none">
                     </div>
                 </div>
-
-                <div class="flex flex-col items-center mb-12 md:mb-16">
-                    <div id="qrcode" class="p-4 md:p-6 bg-white shadow-xl mb-6"></div>
-                    <p class="font-cinzel text-[8px] md:text-[9px] tracking-[0.4em] text-gray-400 uppercase italic">Pase de Premiere Exclusivo</p>
+                <div class="flex flex-col items-center mb-16">
+                    <div id="qrcode" class="p-4 bg-white shadow-xl mb-6"></div>
+                    <p class="font-cinzel text-[8px] tracking-[0.4em] text-gray-400 uppercase italic">Pase de Premiere Exclusivo</p>
                 </div>
-
-                <button onclick="sendRSVP()" class="w-full md:w-auto px-12 md:px-20 py-5 md:py-7 bg-dorado text-white font-cinzel text-[10px] md:text-[11px] tracking-[0.6em] md:tracking-[0.8em] uppercase hover:bg-black transition-all duration-1000 shadow-xl">
+                <button onclick="sendRSVP()" class="w-full md:w-auto px-20 py-7 bg-dorado text-white font-cinzel text-[11px] tracking-[0.8em] uppercase hover:bg-black transition-all shadow-2xl">
                     Confirmar a la Gala
                 </button>
             </div>
         </div>
     </section>
 
-    <footer class="py-16 md:py-24 bg-marfil text-center">
-        <p class="font-cinzel text-[8px] md:text-[9px] tracking-[1em] md:tracking-[1.5em] text-gray-300 uppercase px-4">Trisaro Studio | Ultra-Platinum Hollywood © 2026</p>
+    <footer class="py-16 bg-marfil text-center">
+        <p class="font-cinzel text-[8px] md:text-[9px] tracking-[1.2em] text-gray-300 uppercase px-4">Trisaro Studio | Hollywood Digital Experience © 2026</p>
     </footer>
 
     <script>
@@ -256,7 +241,7 @@
         function sendRSVP() {
             const places = document.getElementById('guest-count').value;
             const allergies = document.getElementById('allergies').value || "Ninguna";
-            const msg = `Hola Valeria y Sebastian, soy ${guestName} y confirmo con mucho gusto mi asistencia. Estaremos presentes ${places} persona(s). Notas/Alergias: ${allergies}. ¡Qué emoción!`;
+            const msg = `Hola Valeria y Sebastian, soy ${guestName} y confirmo mi asistencia. Seremos ${places} personas. Notas: ${allergies}. ¡Felicidades!`;
             window.open(`https://wa.me/4121156845?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
@@ -283,21 +268,11 @@
             colorDark : "#C6A75E", colorLight : "#ffffff"
         });
 
-        /* --- LÍNEAS DE SEGURIDAD REFORZADAS --- */
+        // SEGURIDAD REFORZADA
         document.onkeydown = function(e) {
-            // Bloquea F12
-            if(e.keyCode == 123) return false;
-            // Bloquea Ctrl+Shift+I (Inspeccionar)
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
-            // Bloquea Ctrl+Shift+J (Consola)
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
-            // Bloquea Ctrl+U (Ver código fuente)
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
         };
-
-        // Bloquea clic derecho
         document.addEventListener('contextmenu', e => e.preventDefault());
-        // Bloquea arrastre de imágenes
         document.addEventListener('dragstart', e => e.preventDefault());
     </script>
 </body>
