@@ -261,14 +261,14 @@
     <div class="container mx-auto px-6 text-center">
         <h3 class="font-cinzel text-[10px] tracking-[0.5em] text-dorado mb-10 uppercase">Premiere Backstage</h3>
         
-        <div class="flex justify-center items-center flex-col">
-            <button onclick="openStories()" class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-tr from-dorado via-doradoOscuro to-marfil rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-spin-slow"></div>
-                
-                <div class="relative w-24 h-24 md:w-32 md:h-32 bg-white rounded-full p-1">
-                    <img src="./foto1.png" class="w-full h-full rounded-full object-cover border-2 border-white" alt="Stories">
-                    <div class="absolute bottom-1 right-1 bg-dorado text-white w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg">+</div>
-                </div>
+        <a href="https://photos.app.goo.gl/TU_LINK_REAL" target="_blank" class="relative group inline-block">
+    <div class="absolute -inset-1 bg-gradient-to-tr from-dorado via-doradoOscuro to-marfil rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 animate-spin-slow"></div>
+    
+    <div class="relative w-24 h-24 md:w-32 md:h-32 bg-white rounded-full p-1">
+        <img src="./foto1.png" class="w-full h-full rounded-full object-cover border-2 border-white" alt="Stories">
+        <div class="absolute bottom-1 right-1 bg-dorado text-white w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg">+</div>
+    </div>
+</a>
             </button>
             
             <p class="font-cinzel text-[9px] mt-4 tracking-[0.3em] text-gray-500 uppercase italic">Historias del Estreno</p>
@@ -427,20 +427,19 @@
         // BLOQUEOS (MANTENIDOS)
         document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
         document.addEventListener('contextmenu', e => e.preventDefault());
-        // FUNCIÓN PARA ABRIR LAS HISTORIAS
+        /* FUNCIÓN OPTIMIZADA PARA EDGE Y MÓVILES */
 function openStories() {
+    // 1. Tu enlace real (Asegúrate de que empiece con https://)
     const albumUrl = "https://photos.app.goo.gl/DUo79VEbCbE111f98"; 
     
-    // Mostramos un mensaje visual rápido en lugar del confirm del sistema
-    const toast = document.createElement('div');
-    toast.className = 'toast-premiere active';
-    toast.innerHTML = `🎬 ABRIENDO CARRETE BACKSTAGE...`;
-    document.body.appendChild(toast);
-
-    // Esperamos medio segundo para que el usuario vea el mensaje y redirigimos
-    setTimeout(() => {
+    // 2. Apertura inmediata (Edge permite esto porque es una acción directa del clic)
+    const win = window.open(albumUrl, '_blank');
+    
+    // 3. Verificación por si el navegador es extremadamente estricto
+    if (!win || win.closed || typeof win.closed == 'undefined') { 
+        // Si el pop-up fue bloqueado, usamos redirección en la misma pestaña
         window.location.href = albumUrl;
-    }, 800);
+    }
 }
 
 // NOTIFICACIÓN SIMULADA (OPCIONAL: Genera interacción)
