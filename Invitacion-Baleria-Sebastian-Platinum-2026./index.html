@@ -427,6 +427,29 @@
         // BLOQUEOS (MANTENIDOS)
         document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
         document.addEventListener('contextmenu', e => e.preventDefault());
+        // FUNCIÓN PARA ABRIR LAS HISTORIAS
+function openStories() {
+    // Aquí pegas el enlace de tu Álbum Compartido de Google Photos o un link de Dropbox Transfer
+    const albumUrl = "https://photos.app.goo.gl/TU_ENLACE_AQUI"; 
+    
+    // Mostramos una pequeña notificación estilo "Cine" antes de redirigir
+    const confirmSubir = confirm("¡Bienvenido al Backstage! \n\n Aquí podrás ver las fotos de todos los invitados y subir las tuyas. \n\n ¿Quieres entrar al carrete?");
+    
+    if (confirmSubir) {
+        window.open(albumUrl, '_blank');
+    }
+}
+
+// NOTIFICACIÓN SIMULADA (OPCIONAL: Genera interacción)
+function simulateActivity() {
+    const names = ["Andrés", "Mariana", "Carlos", "Sofía", "Tu primo"];
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    
+    // Esto crea un pequeño aviso visual (puedes integrarlo con un Toast)
+    console.log(`🔔 ${randomName} acaba de subir una nueva historia.`);
+}
+// Descomenta la siguiente línea si quieres que "avise" cada 2 minutos
+// setInterval(simulateActivity, 120000);
     </script>
 </body>
 </html>
