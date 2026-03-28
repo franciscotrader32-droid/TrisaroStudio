@@ -422,24 +422,33 @@
             width: 170, height: 170,
             colorDark : "#C6A75E", colorLight : "#ffffff"
         });
-/* --- FUNCIÓN CAPTURA DE SELFIE INSTANTÁNEA --- */
-function handleLiveStory(input) {
-    if (input.files && input.files[0]) {
-        // 1. Creamos y mostramos la notificación visual en pantalla
-        const toast = document.createElement('div');
-        toast.className = 'toast-premiere active'; // Usamos la clase que ya diseñamos
-        toast.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(10,10,10,0.9); border:1px solid #C6A75E; color:#FDFCFB; padding:12px 24px; border-radius:50px; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; z-index:5000; box-shadow:0 10px 30px rgba(0,0,0,0.5);";
-        toast.innerHTML = `✨ ESCENA CAPTURADA... SUBIENDO AL BACKSTAGE`;
-        document.body.appendChild(toast);
+/* --- SISTEMA DE HISTORIAS Y NOTIFICACIONES TRISARO STUDIO --- */
+        
+        function handleLiveStory(input) {
+            if (input.files && input.files[0]) {
+                showVisualToast(`✨ ESCENA CAPTURADA... SUBIENDO AL BACKSTAGE`);
+                setTimeout(() => {
+                    window.location.href = "https://photos.app.goo.gl/DUo79VEbCbE111f98"; 
+                }, 2000);
+            }
+        }
 
-        // 2. Esperamos 2 segundos para que el invitado vea el mensaje y redirigimos
-        setTimeout(() => {
-            // Usamos tu enlace real de Google Fotos
-            const albumUrl = "https://photos.app.goo.gl/DUo79VEbCbE111f98"; 
-            window.location.href = albumUrl;
-        }, 2000);
-    }
-}
+        function showVisualToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(10,10,10,0.9); border:1px solid #C6A75E; color:#FDFCFB; padding:12px 24px; border-radius:50px; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; z-index:5000; box-shadow:0 10px 30px rgba(0,0,0,0.5); transition: all 0.5s ease;";
+            toast.innerHTML = message;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3500);
+        }
+
+        function simulateActivity() {
+            const names = ["Andrés", "Mariana", "Carlos", "Sofía", "Tu primo"];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            showVisualToast(`🔔 ${randomName.toUpperCase()} SUBIÓ UNA HISTORIA`);
+        }
+        
+        // Activar notificaciones simuladas cada 60 segundos
+        setInterval(simulateActivity, 60000);
         // BLOQUEOS (MANTENIDOS)
         document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
         document.addEventListener('contextmenu', e => e.preventDefault());
