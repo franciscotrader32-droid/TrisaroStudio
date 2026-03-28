@@ -258,22 +258,21 @@
         </div>
     </section>
 <section class="py-12 bg-marfil overflow-hidden">
-    <div class="container mx-auto px-6 text-center">
-        <h3 class="font-cinzel text-[10px] tracking-[0.5em] text-dorado mb-10 uppercase">Premiere Backstage</h3>
+    <div class="flex justify-center items-center flex-col">
+    <label class="relative group cursor-pointer">
+        <div class="absolute -inset-1 bg-gradient-to-tr from-dorado via-doradoOscuro to-marfil rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 animate-spin-slow"></div>
         
-        <a href="https://photos.app.goo.gl/DUo79VEbCbE111f98" target="_blank" class="relative group inline-block">
-    <div class="absolute -inset-1 bg-gradient-to-tr from-dorado via-doradoOscuro to-marfil rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 animate-spin-slow"></div>
-    
-    <div class="relative w-24 h-24 md:w-32 md:h-32 bg-white rounded-full p-1">
-        <img src="./foto1.png" class="w-full h-full rounded-full object-cover border-2 border-white" alt="Stories">
-        <div class="absolute bottom-1 right-1 bg-dorado text-white w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg">+</div>
-    </div>
-</a>
-            </button>
-            
-            <p class="font-cinzel text-[9px] mt-4 tracking-[0.3em] text-gray-500 uppercase italic">Historias del Estreno</p>
-            <p class="font-cormorant text-xs text-dorado mt-1">Toca para ver o subir tu momento</p>
+        <div class="relative w-24 h-24 md:w-32 md:h-32 bg-white rounded-full p-1 shadow-2xl">
+            <img src="./foto1.png" class="w-full h-full rounded-full object-cover border-2 border-white">
+            <div class="absolute bottom-1 right-1 bg-dorado text-white w-8 h-8 rounded-full border-2 border-white flex items-center justify-center font-bold text-lg">+</div>
         </div>
+
+        <input type="file" accept="image/*" capture="user" class="hidden" onchange="handleLiveStory(this)">
+    </label>
+    
+    <p class="font-cinzel text-[9px] mt-4 tracking-[0.3em] text-gray-500 uppercase italic">Captura el Momento</p>
+    <p class="font-cormorant text-xs text-dorado mt-1">Toca para selfie instantánea</p>
+</div>
     </div>
 </section>
 
