@@ -430,86 +430,90 @@
             colorDark : "#C6A75E", colorLight : "#ffffff"
         });
 /* --- CONFIGURACIÓN CLOUDINARY TRISARO --- */
-        const CLOUD_NAME = "dkjieop3h"; // Reemplaza con tu Cloud Name de Cloudinary
-        const UPLOAD_PRESET = "boda_preset"; // Reemplaza con tu Unsigned Preset
+const CLOUD_NAME = "dkjieop3h"; 
+const UPLOAD_PRESET = "boda_preset"; 
+const BODA_ID = "boda_valeria_sebastian"; 
 
-        // 1. SUBIR FOTO A CLOUDINARY
-        async function uploadToCloudinary(input) {
-            if (!input.files || !input.files[0]) return;
-            const file = input.files[0];
-            const loader = document.getElementById('uploadLoader');
-            const icon = document.getElementById('camIcon');
-            loader.classList.remove('hidden');
-            icon.classList.add('opacity-10');
+// 1. SUBIR FOTO A CLOUDINARY (Usa BODA_ID)
+async function uploadToCloudinary(input) {
+    if (!input.files || !input.files[0]) return;
+    const file = input.files[0];
+    const loader = document.getElementById('uploadLoader');
+    const icon = document.getElementById('camIcon');
+    loader.classList.remove('hidden');
+    icon.classList.add('opacity-10');
 
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('upload_preset', UPLOAD_PRESET);
-            formData.append('tags', 'boda_valeria_sebastian'); 
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', UPLOAD_PRESET);
+    formData.append('tags', BODA_ID); 
 
-            try {
-                const resp = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
-                    method: 'POST',
-                    body: formData
-                });
-                const data = await resp.json();
-                if (data.secure_url) {
-                    addStoryToFeed(data.secure_url, true);
-                    showVisualToast("✨ ¡ESCENA PUBLICADA EN EL BACKSTAGE!");
-                }
-            } catch (err) {
-                showVisualToast("❌ ERROR DE CONEXIÓN");
-            } finally {
-                loader.classList.add('hidden');
-                icon.classList.remove('opacity-10');
-            }
+    try {
+        const resp = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+            method: 'POST',
+            body: formData
+        });
+        const data = await resp.json();
+        if (data.secure_url) {
+            addStoryToFeed(data.secure_url, true);
+            showVisualToast("✨ ¡ESCENA PUBLICADA EN EL BACKSTAGE!");
         }
+    } catch (err) {
+        showVisualToast("❌ ERROR DE CONEXIÓN");
+    } finally {
+        loader.classList.add('hidden');
+        icon.classList.remove('opacity-10');
+    }
+}
 
-        // 2. AGREGAR BURBUJA AL FEED
-        function addStoryToFeed(url, isNew = false) {
-            const feed = document.getElementById('storiesFeed');
-            const div = document.createElement('div');
-            div.className = `flex-shrink-0 flex flex-col items-center ${isNew ? 'animate-fade-in' : ''}`;
-            const thumbUrl = url.replace('/upload/', '/upload/c_fill,g_face,w_150,h_150,q_auto/');
-            div.innerHTML = `
-                <div class="w-20 h-20 rounded-full border-2 border-dorado/30 p-1 cursor-pointer" onclick="window.open('${url}', '_blank')">
-                    <img src="${thumbUrl}" class="w-full h-full rounded-full object-cover">
-                </div>
-                <p class="text-[7px] mt-3 font-cinzel text-gray-400 tracking-tighter uppercase">Invitado</p>
-            `;
-            feed.insertBefore(div, feed.children[1]);
-        }
+// 2. AGREGAR BURBUJA AL FEED
+function addStoryToFeed(url, isNew = false) {
+    const feed = document.getElementById('storiesFeed');
+    const div = document.createElement('div');
+    div.className = `flex-shrink-0 flex flex-col items-center ${isNew ? 'animate-fade-in' : ''}`;
+    const thumbUrl = url.replace('/upload/', '/upload/c_fill,g_face,w_150,h_150,q_auto/');
+    div.innerHTML = `
+        <div class="w-20 h-20 rounded-full border-2 border-dorado/30 p-1 cursor-pointer" onclick="window.open('${url}', '_blank')">
+            <img src="${thumbUrl}" class="w-full h-full rounded-full object-cover">
+        </div>
+        <p class="text-[7px] mt-3 font-cinzel text-gray-400 tracking-tighter uppercase">Invitado</p>
+    `;
+    feed.insertBefore(div, feed.children[1]);
+}
 
-        // 3. CARGAR HISTORIAS EXISTENTES AL ABRIR
-        async function loadExistingStories() {
-            try {
-                const resp = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/boda_valeria_sebastian.json`);
-                const data = await resp.json();
-                data.resources.forEach(res => {
-                    const fullUrl = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`;
-                    addStoryToFeed(fullUrl);
-                });
-            } catch (e) { console.log("Feed listo."); }
-        }
-        window.addEventListener('load', loadExistingStories);
+// 3. CARGAR HISTORIAS EXISTENTES (Usa BODA_ID)
+async function loadExistingStories() {
+    try {
+        // Aquí es donde unificamos la lectura con la variable BODA_ID
+        const resp = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${BODA_ID}.json`);
+        const data = await resp.json();
+        data.resources.forEach(res => {
+            const fullUrl = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`;
+            addStoryToFeed(fullUrl);
+        });
+    } catch (e) { console.log("Iniciando feed..."); }
+}
+window.addEventListener('load', loadExistingStories);
 
-        function showVisualToast(message) {
-            const toast = document.createElement('div');
-            toast.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(10,10,10,0.9); border:1px solid #C6A75E; color:#FDFCFB; padding:12px 24px; border-radius:50px; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; z-index:5000; box-shadow:0 10px 30px rgba(0,0,0,0.5); transition: all 0.5s ease;";
-            toast.innerHTML = message;
-            document.body.appendChild(toast);
-            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3500);
-        }
+// 4. NOTIFICACIONES VISUALES
+function showVisualToast(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(10,10,10,0.9); border:1px solid #C6A75E; color:#FDFCFB; padding:12px 24px; border-radius:50px; font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; z-index:5000; box-shadow:0 10px 30px rgba(0,0,0,0.5); transition: all 0.5s ease;";
+    toast.innerHTML = message;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3500);
+}
 
-        function simulateActivity() {
-            const names = ["Andrés", "Mariana", "Carlos", "Sofía", "Tu primo"];
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            showVisualToast(`🔔 ${randomName.toUpperCase()} SUBIÓ UNA HISTORIA`);
-        }
-        setInterval(simulateActivity, 60000);
-        // BLOQUEOS (MANTENIDOS)
-        document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
-        document.addEventListener('contextmenu', e => e.preventDefault());
+function simulateActivity() {
+    const names = ["Andrés", "Mariana", "Carlos", "Sofía", "Tu primo"];
+    const randomName = names[Math.floor(Math.random() * names.length)];
+    showVisualToast(`🔔 ${randomName.toUpperCase()} SUBIÓ UNA HISTORIA`);
+}
+setInterval(simulateActivity, 60000);
+
+// BLOQUEOS DE SEGURIDAD
+document.onkeydown = function(e) { if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) return false; };
+document.addEventListener('contextmenu', e => e.preventDefault());
         /* FUNCIÓN OPTIMIZADA PARA EDGE Y MÓVILES */
 function openStories() {
     // 1. Tu enlace real (Asegúrate de que empiece con https://)
